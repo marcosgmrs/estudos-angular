@@ -1,27 +1,5 @@
-<h1>Meu App Angular</h1>
+<h1>Minhas Tarefas</h1>
 
-<div class="busca">
-  <input [(ngModel)]="nomeBusca" placeholder="Digite um nome...">
-  <p>Você digitou: {{ nomeBusca }}</p>
-</div>
-
-<div class="contador">
-  <p>Cliques: {{ contador }}</p>
-  <button (click)="incrementar()">Clique aqui</button>
-
-  @if (contador > 5) {
-    <p>Você clicou mais de 5 vezes!</p>
-  }
-
-  @if (contador > 10) {
-    <p>Mais de 10 cliques, uau!</p>
-  }
-</div>
-
-@for (pessoa of pessoasFiltradas; track pessoa.nome) {
-  <app-card
-    [nome]="pessoa.nome"
-    [cargo]="pessoa.cargo"
-    [cidade]="pessoa.cidade">
-  </app-card>
+@for (tarefa of tarefas; track tarefa.nome) {
+  <app-tarefa [tarefa]="tarefa"></app-tarefa>
 }

@@ -1,34 +1,17 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Card } from './components/card/card';
+import { Tarefa } from './components/tarefa/tarefa';
 
 @Component({
   selector: 'app-root',
-  imports: [Card, FormsModule],
+  imports: [Tarefa],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  pessoas = [
-    { nome: 'Marcos Guimarães', cargo: 'Desenvolvedor Angular', cidade: 'São Gonçalo, RJ' },
-    { nome: 'Ana Silva', cargo: 'Desenvolvedora React', cidade: 'Rio de Janeiro, RJ' },
-    { nome: 'Carlos Santos', cargo: 'Desenvolvedor Vue', cidade: 'Niterói, RJ' },
-    { nome: 'Julia Costa', cargo: 'Desenvolvedora Angular', cidade: 'Petrópolis, RJ' }
+  tarefas = [
+    { nome: 'Aprender Terminal', responsavel: 'Marcos', concluida: true },
+    { nome: 'Aprender Git', responsavel: 'Marcos', concluida: true },
+    { nome: 'Aprender TypeScript', responsavel: 'Marcos', concluida: true },
+    { nome: 'Aprender Angular', responsavel: 'Marcos', concluida: false }
   ]
-
-  contador: number = 0
-  nomeBusca: string = ''
-
-  incrementar(): void {
-    this.contador++
-  }
-
-  get pessoasFiltradas() {
-    if (!this.nomeBusca) {
-      return this.pessoas
-    }
-    return this.pessoas.filter((pessoa) =>
-      pessoa.nome.toLowerCase().includes(this.nomeBusca.toLowerCase())
-    )
-  }
 }

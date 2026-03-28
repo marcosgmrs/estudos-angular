@@ -1,5 +1,10 @@
 <h1>Meu App Angular</h1>
 
+<div class="busca">
+  <input [(ngModel)]="nomeBusca" placeholder="Digite um nome...">
+  <p>Você digitou: {{ nomeBusca }}</p>
+</div>
+
 <div class="contador">
   <p>Cliques: {{ contador }}</p>
   <button (click)="incrementar()">Clique aqui</button>

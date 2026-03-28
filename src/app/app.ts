@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Card } from './components/card/card';
 
 @Component({
   selector: 'app-root',
-  imports: [Card],
+  imports: [Card, FormsModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -16,6 +17,7 @@ export class App {
   ]
 
   contador: number = 0
+  nomeBusca: string = ''
 
   incrementar(): void {
     this.contador++

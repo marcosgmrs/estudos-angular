@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,9 +22,12 @@ export class Login {
     return this.formulario.get('senha')
   }
 
+  constructor(private router: Router) {}
+
   entrar(): void {
     if (this.formulario.valid) {
-      console.log('Login com:', this.formulario.value)
+      localStorage.setItem('logado', 'true')
+      this.router.navigate(['/perfil'])
     }
   }
 }

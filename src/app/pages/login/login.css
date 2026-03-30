@@ -1,0 +1,46 @@
+.login-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 32px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+  gap: 6px;
+}
+
+label {
+  font-weight: 500;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.erro {
+  color: red;
+  font-size: 13px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: #333;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: #999;
+  cursor: not-allowed;
+}

@@ -1,7 +1,9 @@
-<h2>Minhas Tarefas</h2>
+<h2>Tarefas da API</h2>
 
-@for (tarefa of tarefas; track tarefa.nome) {
-  <app-tarefa [tarefa]="tarefa"></app-tarefa>
-}
+<div *ngFor="let todo of todos" class="todo-item">
+  <span>{{ todo.title }}</span>
+  <span *ngIf="todo.completed; else pendente">✅</span>
+  <ng-template #pendente><span>⏳</span></ng-template>
+</div>
 
 <a routerLink="/">Voltar</a>

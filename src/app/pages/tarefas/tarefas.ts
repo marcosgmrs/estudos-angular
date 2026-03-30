@@ -1,18 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Tarefa } from '../../components/tarefa/tarefa';
-import { TarefaService } from '../../services/tarefa';
+import { CommonModule } from '@angular/common';
+import { TarefaService, TodoItem } from '../../services/tarefa';
 
 @Component({
   selector: 'app-tarefas',
-  imports: [RouterLink, Tarefa],
+  imports: [RouterLink, CommonModule],
   templateUrl: './tarefas.html',
   styleUrl: './tarefas.css'
 })
-export class Tarefas {
-  tarefas: { nome: string, responsavel: string, concluida: boolean }[] = []
+export class Tarefas implements OnInit {
+  todos: TodoItem[] = []
 
-  constructor(private tarefaService: TarefaService) {
-    this.tarefas = this.tarefaService.getTarefas()
-  }
+  constructor(private tarefaService: TarefaService) {}
+
+ngOnInit(): void {
+  this.tarefaService.getTodos().subscribe((dados) => {
+    this.todos = dados.slice(0, 10)
+  })
+}
 }

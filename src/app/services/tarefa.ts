@@ -1,17 +1,21 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+export interface TodoItem {
+  id: number
+  title: string
+  completed: boolean
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class TarefaService {
-  tarefas = [
-    { nome: 'Aprender Terminal', responsavel: 'Marcos', concluida: true },
-    { nome: 'Aprender Git', responsavel: 'Marcos', concluida: true },
-    { nome: 'Aprender TypeScript', responsavel: 'Marcos', concluida: true },
-    { nome: 'Aprender Angular', responsavel: 'Marcos', concluida: false }
-  ]
+  private apiUrl = 'https://jsonplaceholder.typicode.com/todos'
 
-  getTarefas() {
-    return this.tarefas
+  constructor(private http: HttpClient) {}
+
+  getTodos() {
+    return this.http.get<TodoItem[]>(this.apiUrl)
   }
 }

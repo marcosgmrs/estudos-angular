@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Tarefa } from './components/tarefa/tarefa';
+import { TarefaService } from './services/tarefa';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +9,9 @@ import { Tarefa } from './components/tarefa/tarefa';
   styleUrl: './app.css'
 })
 export class App {
-  tarefas = [
-    { nome: 'Aprender Terminal', responsavel: 'Marcos', concluida: true },
-    { nome: 'Aprender Git', responsavel: 'Marcos', concluida: true },
-    { nome: 'Aprender TypeScript', responsavel: 'Marcos', concluida: true },
-    { nome: 'Aprender Angular', responsavel: 'Marcos', concluida: false }
-  ]
+  tarefas: { nome: string, responsavel: string, concluida: boolean }[] = []
+
+  constructor(private tarefaService: TarefaService) {
+    this.tarefas = this.tarefaService.getTarefas()
+  }
 }

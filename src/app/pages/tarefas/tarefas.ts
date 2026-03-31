@@ -10,12 +10,21 @@ import { TarefaService, TodoItem } from '../../services/tarefa';
 })
 export class Tarefas implements OnInit {
   todos = signal<TodoItem[]>([])
+  carregando = signal(true)
+  erro = signal('')
 
   constructor(private tarefaService: TarefaService) {}
 
   ngOnInit(): void {
-    this.tarefaService.getTodos().subscribe((dados) => {
-      this.todos.set(dados)
+    this.tarefaService.getTodos().subscribe({
+      next: (dados) => {
+        this.todos.set(dados)
+        this.carregando.set(false)
+      },
+      error: (err) => {
+        this.erro.set('Não foi possível carregar as tarefas. Tente novamente.')
+        this.carregando.set(false)
+      }
     })
   }
 }

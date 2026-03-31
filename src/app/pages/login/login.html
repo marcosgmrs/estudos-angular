@@ -1,13 +1,16 @@
 <div class="login-container">
-  <h2>Login</h2>
+  <div class="login-header">
+    <span class="login-icone">🔐</span>
+    <h2>Bem-vindo de volta</h2>
+    <p>Entre com suas credenciais para continuar</p>
+  </div>
 
   <form [formGroup]="formulario" (ngSubmit)="entrar()">
-
     <div class="campo">
       <label>Email</label>
       <input type="email" formControlName="email" placeholder="seu@email.com">
       @if (email?.invalid && email?.touched) {
-        <span class="erro">Email inválido</span>
+        <span class="erro">Digite um email válido</span>
       }
     </div>
 
@@ -19,7 +22,8 @@
       }
     </div>
 
-    <button type="submit" [disabled]="formulario.invalid">Entrar</button>
-
+    <button type="submit" class="btn-entrar" [disabled]="formulario.invalid">
+      Entrar
+    </button>
   </form>
 </div>

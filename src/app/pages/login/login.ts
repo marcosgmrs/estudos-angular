@@ -24,10 +24,11 @@ export class Login {
 
   constructor(private router: Router) {}
 
-  entrar(): void {
-    if (this.formulario.valid) {
-      localStorage.setItem('logado', 'true')
-      this.router.navigate(['/perfil'])
-    }
+entrar(): void {
+  if (this.formulario.valid) {
+    localStorage.setItem('logado', 'true')
+    localStorage.setItem('email', this.formulario.value.email ?? '')
+    this.router.navigate(['/perfil'])
   }
+}
 }

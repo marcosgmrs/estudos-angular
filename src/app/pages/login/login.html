@@ -7,7 +7,7 @@
 
   <form [formGroup]="formulario" (ngSubmit)="entrar()">
     <div class="campo">
-      <label>Email</label>
+      <label>Digite qualqer email / Email</label>
       <input type="email" formControlName="email" placeholder="seu@email.com">
       @if (email?.invalid && email?.touched) {
         <span class="erro">Digite um email válido</span>
@@ -15,7 +15,7 @@
     </div>
 
     <div class="campo">
-      <label>Senha</label>
+      <label>Digite qualquer sequência de 6 caracteres / Senha</label>
       <input type="password" formControlName="senha" placeholder="mínimo 6 caracteres">
       @if (senha?.invalid && senha?.touched) {
         <span class="erro">Senha precisa ter pelo menos 6 caracteres</span>

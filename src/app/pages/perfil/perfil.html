@@ -1,5 +1,45 @@
-<div class="perfil">
-  <h2>Meu Perfil</h2>
-  <p>Email: {{ email() }}</p>
-  <button (click)="sair()">Sair</button>
+<div class="perfil-container">
+
+  @if (carregando()) {
+    <div class="carregando">
+      <span class="spinner">⚙</span>
+      <p>Carregando perfil...</p>
+    </div>
+  } @else if (usuario()) {
+    <div class="perfil-hero">
+      <img
+        [src]="usuario()!.avatar_url"
+        class="perfil-avatar"
+        alt="Foto de perfil do GitHub">
+      <div class="perfil-info">
+        <h2>{{ usuario()!.name }}</h2>
+        <p class="perfil-cargo">{{ usuario()!.bio || 'Desenvolvedor Front-end em formação' }}</p>
+        <p class="perfil-email">{{ email() }}</p>
+        <a [href]="usuario()!.html_url" target="_blank" rel="noopener noreferrer" class="perfil-github">
+          @github/{{ usuario()!.login }}
+        </a>
+      </div>
+    </div>
+
+    <div class="perfil-cards">
+      <div class="perfil-card">
+        <span class="numero">{{ usuario()!.public_repos }}</span>
+        <span class="label">Repositórios</span>
+      </div>
+      <div class="perfil-card">
+        <span class="numero">{{ usuario()!.followers }}</span>
+        <span class="label">Seguidores</span>
+      </div>
+      <div class="perfil-card">
+        <span class="numero">{{ usuario()!.following }}</span>
+        <span class="label">Seguindo</span>
+      </div>
+      <div class="perfil-card">
+        <span class="numero">12</span>
+        <span class="label">Tópicos concluídos</span>
+      </div>
+    </div>
+  }
+
+  <button class="btn-sair" (click)="sair()">Sair da conta</button>
 </div>

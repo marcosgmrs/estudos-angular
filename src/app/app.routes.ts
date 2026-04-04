@@ -1,17 +1,30 @@
 import { Routes } from '@angular/router';
-import { Home } from './pages/home/home';
-import { Tarefas } from './pages/tarefas/tarefas';
-import { Sobre } from './pages/sobre/sobre';
-import { Login } from './pages/login/login';
 import { authGuard } from './guards/auth-guard';
-import { Perfil } from './pages/perfil/perfil';
-import { Diario } from './pages/diario/diario';
 
 export const routes: Routes = [
-  { path: '', component: Home },
-  { path: 'tarefas', component: Tarefas },
-  { path: 'sobre', component: Sobre },
-  { path: 'login', component: Login },
-  { path: 'perfil', component: Perfil, canActivate: [authGuard] },
-  { path: 'diario', component: Diario }
+  {
+    path: '',
+    loadComponent: () => import('./pages/home/home').then(m => m.Home)
+  },
+  {
+    path: 'tarefas',
+    loadComponent: () => import('./pages/tarefas/tarefas').then(m => m.Tarefas)
+  },
+  {
+    path: 'sobre',
+    loadComponent: () => import('./pages/sobre/sobre').then(m => m.Sobre)
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('./pages/login/login').then(m => m.Login)
+  },
+  {
+    path: 'perfil',
+    loadComponent: () => import('./pages/perfil/perfil').then(m => m.Perfil),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'diario',
+    loadComponent: () => import('./pages/diario/diario').then(m => m.Diario)
+  }
 ]

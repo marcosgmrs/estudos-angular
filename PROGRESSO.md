@@ -172,7 +172,7 @@ O interceptor foi validado via Network do navegador — funcionando corretamente
   - [x] RxJS e Observables
   - [x] Guards de rota
   - [x] Interceptors HTTP
-  - [ ] Lazy Loading ← **PRÓXIMO**
+  - [x] Lazy Loading
   - [ ] Resolvers
   - [ ] Testes unitários
 - [ ] Fase 4 — Projeto 3 (curso escrito em Angular)

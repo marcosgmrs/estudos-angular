@@ -1,7 +1,5 @@
-# 📚 Jornada de Aprendizado Angular — Marcos Guimarães
-
-> Este arquivo serve como **briefing completo** para qualquer agente de IA (Claude, Antigravity, etc.)
-> dar continuidade às aulas de onde paramos. Leia tudo antes de responder qualquer coisa.
+# 📚 Jornada Angular — Marcos Guimarães
+> Briefing completo para continuidade das aulas. Leia antes de responder qualquer coisa.
 
 ---
 
@@ -9,10 +7,10 @@
 
 | Campo | Info |
 |---|---|
-| **Nome** | Marcos Guimarães |
+| **Nome** | Marcos Henriques Guimarães |
 | **Cidade** | São Gonçalo, RJ |
 | **GitHub** | github.com/marcosgmrs |
-| **Nível inicial** | Sabia apenas HTML e CSS. Zero de programação. |
+| **Nível inicial** | Apenas HTML e CSS. Zero de programação. |
 | **Computador** | MacBook Air (Apple Silicon) |
 | **Disponibilidade** | Mais de 2h por dia |
 | **Objetivo** | Primeiro emprego como dev front-end júnior |
@@ -20,144 +18,161 @@
 
 ---
 
-## 🎓 Estilo de ensino que funciona com este aluno
+## 🎓 Como ensinar este aluno
 
-- **Didático e passo a passo** — nunca pular etapas
-- **Explicação semântica instrumental** — não só "o que fazer", mas **por que existe** e **que problema resolve**
-- **Analogias do cotidiano** — Excel, YouTube, fila de caixas, etc.
-- **Código no VS Code** — não no console do navegador
-- **Commit a cada avanço** — `git add . → git commit → git push` ao fim de cada aula
-- **Numeração das aulas** — o aluno gosta de saber em que aula está
-- **Imagens quando ajudam** — diagramas de conceitos são bem-vindos
-- **Não avançar se não entendeu** — perguntar o que ficou claro antes de seguir
-- **Não usar copiar/colar sem explicação** — o aluno percebe quando está só copiando
-- **Sintaxe Angular moderna (v18+)** — usar `@if`, `@for`, `styleUrl` (sem s), `input()`, `signal()`. Nunca `*ngIf`, `*ngFor`, `styleUrls`
+- **Didático e passo a passo** — nunca pular etapas, sempre explicar o porquê
+- **Semântica instrumental** — não só "o que fazer", mas que problema aquilo resolve
+- **Analogias do cotidiano** — fábricas, receitas, fotos, táxis, torneiras
+- **Código sempre no VS Code** — não no console do navegador
+- **Commit a cada avanço** — faz parte do ritual, o aluno gosta
+- **Numerar as aulas** — o aluno gosta de saber em que aula está
+- **Imagens e diagramas** — bem-vindos quando ajudam a entender
+- **Não pressionar por memorização** — foco em leitura e compreensão
+- **Angular moderno (v18+)** — `@if`, `@for`, `signal()`, `styleUrl` (sem s). Nunca `*ngIf`, `*ngFor`, `styleUrls`
+- **Não usar `standalone: true`** — é o padrão no Angular 18+, não precisa declarar
+- **Sempre atualizar o PROGRESSO.md** ao fim de cada sessão de aulas
 
 ---
 
-## 🗂️ Projeto atual
+## 🗂️ Repositórios e projetos
 
-- **Pasta:** `~/Angular/estudos-angular`
-- **Repositório GitHub:** `github.com/marcosgmrs/estudos-angular`
-- **Angular:** v18+ (standalone components — `standalone: true` NÃO é necessário)
-- **Servidor de dev:** `ng serve` → `http://localhost:4200`
+| Repositório | Descrição | Deploy |
+|---|---|---|
+| `marcosgmrs/estudos-angular` | Repositório principal de estudos | meus-estudos-angular.vercel.app |
+| `marcosgmrs/mineralogia` | Catálogo satírico de minerais (projeto 2) | mineralogia.vercel.app |
+| `marcosgmrs/marcosgmrs` | Portfólio pessoal Angular | marcosgmrs.vercel.app |
+| `Vistructa/gems_studies` | Repo colaborativo do amigo (branch: feature/mineralogia) | — |
 
-### Estrutura relevante
+### Projeto principal de estudos
+
+- **Pasta local:** `~/Angular/estudos-angular`
+- **Servidor:** `ng serve` → `http://localhost:4200`
+- **Angular:** v18 standalone
 
 ```
 src/app/
-├── app.ts                  ← componente raiz com nav e router-outlet
-├── app.html                ← nav com links e <router-outlet>
-├── app.routes.ts           ← rotas definidas
-├── app.config.ts           ← configuração do app (HttpClient, interceptor)
+├── app.ts / app.html / app.css    ← raiz com navbar e router-outlet
+├── app.routes.ts                  ← todas as rotas
+├── app.config.ts                  ← HttpClient + interceptor configurados
 │
 ├── pages/
-│   ├── home/               ← página inicial
-│   ├── tarefas/            ← lista de tópicos de estudo com status
-│   ├── sobre/              ← página sobre
-│   ├── login/              ← formulário reativo de login
-│   └── perfil/             ← perfil com GitHub API, abas, progresso, currículo
+│   ├── home/       ← página inicial dark laranja
+│   ├── tarefas/    ← lista de tópicos de estudo com status (signal)
+│   ├── sobre/      ← dados reais do GitHub API + cards de info
+│   ├── login/      ← formulário reativo com validação
+│   ├── perfil/     ← dashboard com abas: Progresso, Repositórios, Currículo
+│   └── diario/     ← histórico das aulas em formato de chat
 │
 ├── services/
-│   ├── tarefa.ts           ← TarefaService — retorna lista de tópicos de estudo
-│   └── github.ts           ← GithubService — busca dados e repos da API do GitHub
+│   ├── tarefa.ts   ← lista de tópicos de estudo (dados locais)
+│   ├── github.ts   ← GitHub API: getUsuario() e getRepositorios()
+│   └── diario.ts   ← histórico de mensagens das aulas
 │
 ├── guards/
-│   └── auth-guard.ts       ← protege a rota /perfil (redireciona para /login)
+│   └── auth-guard.ts        ← protege /perfil, redireciona para /login
 │
 └── interceptors/
-    └── auth-interceptor.ts ← adiciona header Authorization Bearer nas requisições
+    └── auth-interceptor.ts  ← adiciona Authorization Bearer (exceto api.github.com)
 ```
 
 ---
 
-## ✅ Aulas concluídas (resumo)
+## ✅ Aulas concluídas
 
 ### Fase 0 — Pré-requisitos
 
-| Aula | Tópico | Conceitos-chave |
+| Aulas | Tópico | Conceitos |
 |---|---|---|
 | 1–6 | Terminal | `pwd`, `ls`, `cd`, `mkdir`, `code .`, `clear` |
-| 7–12 | Git & GitHub | `init`, `add`, `commit`, `push`, remote, autenticação |
+| 7–12 | Git & GitHub | `init`, `add`, `commit`, `push`, remote, token |
 | 13–21 | JavaScript no Console | vars, objetos, funções, arrow fn, async/await |
-| 22–29 | JavaScript no VS Code | `return`, arrays, `map`, `filter`, `find`, métodos, callbacks |
-| 28 | Branches (conceito) | `git branch`, `git checkout`, merge — conceito, sem prática aprofundada |
+| 22–29 | JavaScript no VS Code | `return`, arrays, `map`, `filter`, `find`, callbacks |
+| 28 | Branches | `git branch`, `git checkout`, merge (conceito) |
 
 ### Fase 1 — TypeScript
 
-| Aula | Tópico | Conceitos-chave |
+| Aulas | Tópico | Conceitos |
 |---|---|---|
-| 30–31 | Por que TypeScript existe | Problema do JS sem tipos, `somar("2", 3) === 23` |
-| 32–33 | Instalação e primeiro `.ts` | `npm install -g typescript`, `tsc`, `ts-node` |
+| 30–31 | Por que TypeScript | `somar("2", 3) === 23` — o problema |
+| 32–33 | Instalação | `npm install -g typescript`, `ts-node` |
 | 34 | Tipos primitivos | `string`, `number`, `boolean`, `string[]` |
-| 35–36 | Interface | Contrato de objeto, propriedade opcional com `?` |
-| 37 | Classes | `class`, `constructor`, `this`, `new`, instâncias |
+| 35–36 | Interface | Contrato de objeto, propriedade opcional `?` |
+| 37 | Classes | `class`, `constructor`, `this`, `new` |
 
-### Fase 2 — Angular
+### Fase 2 — Angular fundamentos
 
-| Aula | Tópico | Conceitos-chave |
+| Aulas | Tópico | Conceitos |
 |---|---|---|
-| 38–40 | O que é Angular | Framework vs biblioteca, componente, arvore de componentes |
-| 41 | Angular CLI | `npm install -g @angular/cli`, `ng version` |
-| 42 | Primeiro projeto | `ng new`, `ng serve`, `app.ts`, `app.html`, live reload |
-| 43 | Primeiro componente | `ng generate component`, `@Component`, selector, `.ts+.html+.css` |
-| 43 | Interpolação | `{{ valor }}` |
-| 44 | @Input | Passar dados de fora para dentro do componente |
-| 44 | @for | Repetir componentes com lista |
-| 45 | Eventos | `(click)="metodo()"`, `incrementar()`, `: void` |
-| 46 | @if | Mostrar/esconder com condição |
+| 38–40 | O que é Angular | Framework vs biblioteca, componentes, árvore |
+| 41 | Angular CLI | `ng new`, `ng generate`, `ng serve` |
+| 42–43 | Primeiro projeto | `app.ts`, `app.html`, live reload, interpolação `{{ }}` |
+| 44 | @Input e @for | Passar dados entre componentes, repetir listas |
+| 45 | Eventos | `(click)`, `: void`, métodos na classe |
+| 46 | @if | Condicionais no template |
 | 47 | Two-way binding | `[(ngModel)]`, `FormsModule` |
-| 48–49 | Serviços | `@Injectable`, `providedIn: 'root'`, separação de responsabilidades |
-| 50 | Injeção de dependência | `inject()` vs construtor, como o Angular entrega serviços |
-| 50 | HttpClient | `GET` de API, `subscribe`, `pipe`, `catchError`, `of` |
-| 51 | Rotas | `app.routes.ts`, `<router-outlet>`, `routerLink`, `routerLinkActive` |
-| 51 | Navegação programática | `inject(Router)`, `router.navigate(['/perfil'])` |
-| 52 | Reactive Forms | `FormGroup`, `FormControl`, `Validators`, `formulario.valid`, `get email()` |
-| 53 | RxJS e Observables | `Subject`, `pipe`, `debounceTime`, `distinctUntilChanged`, `subscribe`, busca reativa |
-| — | Guard de rota | `CanActivateFn`, `canActivate: [authGuard]`, redirect para `/login` |
-| — | Interceptor HTTP | `HttpInterceptorFn`, adicionar header `Authorization: Bearer token` |
-| — | Página de Perfil | GitHub API, signals, abas, barra de progresso, currículo |
+| 48–49 | Serviços | `@Injectable`, separação de responsabilidades |
+| 50 | HttpClient | `GET`, `subscribe`, `pipe`, `catchError`, `of` |
+| 51 | Rotas | `app.routes.ts`, `router-outlet`, `routerLink` |
+| 52 | Reactive Forms | `FormGroup`, `FormControl`, `Validators` |
+| 53 | RxJS | `Observable`, `subscribe`, `pipe`, `map`, `filter`, `catchError` |
+| — | Guards | `CanActivateFn`, `canActivate`, redirect |
+| — | Interceptors | `HttpInterceptorFn`, `req.clone()`, `setHeaders` |
+| — | Signals | `signal()`, `.set()`, `.asReadonly()` |
+| — | GitHub API | Busca de dados reais, perfil com abas |
+
+### Fase 3 — Projetos reais construídos
+
+| Projeto | Descrição | Status |
+|---|---|---|
+| `estudos-angular` | App de estudos com auth, rotas, API, dark mode | ✅ Em andamento |
+| `mineralogia` | Catálogo satírico + quiz, Angular 21, tema gótico | ✅ Concluído |
+| `marcosgmrs` (portfólio) | Portfólio pessoal com Angular, Inter font, tema neutro | ✅ Concluído |
 
 ---
 
-## ⏳ Próxima aula — **Aula 54: Autenticação com JWT e Interceptors (fundo)**
+## ⏳ Próxima aula — Aula 54: Lazy Loading
 
-O aluno já tem um interceptor básico, mas precisamos entender como gerenciar o ciclo de vida do token, expiração e segurança real.
+O interceptor foi validado via Network do navegador — funcionando corretamente.
 
-### O que cobrir na Aula 54:
+**O que é Lazy Loading:**
+- Carregar módulos/componentes só quando o usuário navegar para aquela rota
+- Melhora o tempo de carregamento inicial do app
+- Essencial para apps grandes em produção
 
-1. **O que é JWT** — o "crachá" assinado digitalmente
-2. **Refresh Token (Conceito)** — como manter o usuário logado sem pedir senha toda hora
-3. **Gerenciamento de Estado do Usuário** — evoluir o `estaLogado` do App para algo centralizado
-4. **Tratamento de erro 401** — o que fazer quando o token expira (redirecionamento automático)
+**Como implementar:**
+```typescript
+// Em vez de importar o componente direto:
+{ path: 'perfil', component: Perfil }
 
-### Estado ao iniciar a Aula 54:
-
-- RxJS concluído com busca reativa no perfil.
-- Próximo passo natural é segurança e autenticação profissional.
-- O aluno já tem uma base de interceptor e guard, vamos aprofundar.
-
----
-
-## 📌 Notas importantes para o próximo agente
-
-1. **Angular v18**: use `signal()`, `@if`, `@for`, `inject()`, `input()`. Nunca decorators antigos como `*ngIf`, `*ngFor`.
-2. **Não use `standalone: true`** — é o padrão, não precisa declarar.
-3. **`styleUrl`** (sem s) — não `styleUrls`.
-4. **O aluno tem dificuldade de reproduzir sem consulta** — normal para o estágio. Não pressionar por memorização, focar em leitura e compreensão de código.
-5. **O aluno usa agentes de IA para ajudar** — aceitar, mas ensinar a ler o que foi gerado.
-6. **Committar a cada aula** — é parte do ritual e o aluno gosta.
-7. **Projetos no GitHub:** `marcosgmrs/estudos-angular` (principal) e `marcosgmrs/meu-projeto` (arquivo de prática JS/TS).
+// Usa loadComponent com import dinâmico:
+{ path: 'perfil', loadComponent: () => import('./pages/perfil/perfil').then(m => m.Perfil) }
+```
 
 ---
 
-## 🗺️ Fases restantes do plano original
+## 📌 Notas importantes
+
+1. O aluno já trabalhou com outro agente (Antigravity) — houve confusão com arquivos trocados e histórico Git bagunçado. Já resolvido.
+2. **Nunca commitar arquivos `.htm` de conversa** — adicionar ao `.gitignore`
+3. O token do GitHub que estava exposto foi **revogado** em 03/04/2026
+4. O aluno prefere **nomes de repositórios em português**
+5. No projeto `mineralogia`, commits vão para dois remotes:
+   - `git push origin main`
+   - `git push upstream main:feature/mineralogia`
+6. O aluno tem experiência como instrutor de informática — comunica bem, aprende rápido quando entende o porquê
+
+---
+
+## 🗺️ Fases do plano
 
 - [x] Fase 0 — Terminal, Git, JavaScript básico
-- [x] Fase 1 — TypeScript essencial
-- [x] Fase 2 — Angular (componentes, rotas, serviços, formulários, guards, interceptors)
+- [x] Fase 1 — TypeScript essencial  
+- [x] Fase 2 — Angular fundamentos
 - [ ] **Fase 3 — Angular avançado:**
-  - [ ] RxJS e Observables ← **PRÓXIMO**
-  - [ ] Autenticação com JWT
+  - [x] RxJS e Observables
+  - [x] Guards de rota
+  - [x] Interceptors HTTP
+  - [ ] Lazy Loading ← **PRÓXIMO**
+  - [ ] Resolvers
   - [ ] Testes unitários
-  - [ ] Deploy e CI/CD (Vercel)
+- [ ] Fase 4 — Projeto 3 (curso escrito em Angular)

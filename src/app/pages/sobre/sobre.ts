@@ -1,5 +1,6 @@
 import { Component, OnInit, signal, ViewEncapsulation } from '@angular/core';
-import { GithubService, GithubUsuario } from '../../services/github';
+import { ActivatedRoute } from '@angular/router';
+import { GithubUsuario } from '../../services/github';
 
 @Component({
   selector: 'app-sobre',
@@ -12,12 +13,11 @@ export class Sobre implements OnInit {
   usuario = signal<GithubUsuario | null>(null)
   carregando = signal(true)
 
-  constructor(private githubService: GithubService) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.githubService.getUsuario().subscribe((dados) => {
-      this.usuario.set(dados)
-      this.carregando.set(false)
-    })
+    const dados = this.route.snapshot.data['usuario']
+    this.usuario.set(dados)
+    this.carregando.set(false)
   }
 }

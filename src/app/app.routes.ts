@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './guards/auth-guard';
+import { usuarioResolver } from './resolvers/usuario-resolver';
 
 export const routes: Routes = [
   {
@@ -10,10 +11,11 @@ export const routes: Routes = [
     path: 'tarefas',
     loadComponent: () => import('./pages/tarefas/tarefas').then(m => m.Tarefas)
   },
-  {
-    path: 'sobre',
-    loadComponent: () => import('./pages/sobre/sobre').then(m => m.Sobre)
-  },
+{
+  path: 'sobre',
+  loadComponent: () => import('./pages/sobre/sobre').then(m => m.Sobre),
+  resolve: { usuario: usuarioResolver }
+},
   {
     path: 'login',
     loadComponent: () => import('./pages/login/login').then(m => m.Login)

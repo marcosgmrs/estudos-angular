@@ -1,16 +1,20 @@
 import { TestBed } from '@angular/core/testing';
+import { DiarioService } from './diario';
 
-import { Diario } from './diario';
-
-describe('Diario', () => {
-  let service: Diario;
+describe('DiarioService', () => {
+  let service: DiarioService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(Diario);
+    service = TestBed.inject(DiarioService);
   });
 
-  it('should be created', () => {
+  it('deve ser criado', () => {
     expect(service).toBeTruthy();
   });
-});
+
+  it('deve retornar mensagens', () => {
+    const mensagens = service.getMensagens()
+    expect(mensagens().length).toBeGreaterThan(0)
+  });
+})
